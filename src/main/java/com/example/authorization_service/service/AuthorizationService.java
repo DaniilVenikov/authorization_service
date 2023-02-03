@@ -1,12 +1,12 @@
 package com.example.authorization_service.service;
 
+
 import com.example.authorization_service.exception.InvalidCredentials;
 import com.example.authorization_service.exception.UnauthorizedUser;
 import com.example.authorization_service.repository.Authorities;
 import com.example.authorization_service.repository.UserRepository;
 
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class AuthorizationService {
     UserRepository userRepository;

@@ -1,7 +1,10 @@
 package com.example.authorization_service.controller;
 
+import com.example.authorization_service.model.User;
 import com.example.authorization_service.repository.Authorities;
 import com.example.authorization_service.service.AuthorizationService;
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +25,7 @@ public class AuthorizationController {
     }
 
     @GetMapping("/registration")
-    public void registration(@RequestParam("user") String user, @RequestParam("password") String password){
-        service.registration(user, password);
+    public void registration(@RequestParam @Validated User user){
+        service.registration(user.getName(), user.getPassword());
     }
 }
