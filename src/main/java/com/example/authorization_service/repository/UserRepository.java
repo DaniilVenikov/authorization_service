@@ -10,7 +10,6 @@ public class UserRepository {
         repository.put("daniil", "123");
         repository.put("alex", "861");
         repository.put("bob", "321");
-
     }
     public List<Authorities> getUserAuthorities(String user, String password) {
         String check = repository.get(user);
