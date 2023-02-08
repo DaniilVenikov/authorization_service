@@ -1,6 +1,6 @@
 package com.example.authorization_service.controller;
 
-import com.example.authorization_service.model.User;
+
 import com.example.authorization_service.repository.Authorities;
 import com.example.authorization_service.service.AuthorizationService;
 import jakarta.validation.Valid;
@@ -22,10 +22,5 @@ public class AuthorizationController {
     @GetMapping("/authorize")
     public List<Authorities> getAuthorities(@RequestParam("user") String user, @RequestParam("password") String password) {
         return service.getAuthorities(user, password);
-    }
-
-    @GetMapping("/registration")
-    public void registration(@RequestParam @Validated User user){
-        service.registration(user.getName(), user.getPassword());
     }
 }

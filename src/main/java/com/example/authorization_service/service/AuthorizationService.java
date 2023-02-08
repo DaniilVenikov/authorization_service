@@ -25,11 +25,6 @@ public class AuthorizationService {
         return userAuthorities;
     }
 
-    public void registration(String user, String password){
-        userRepository.addNewUser(user, password);
-        System.out.println("User added");
-    }
-
     private boolean isEmpty(String str) {
         return str == null || str.isEmpty();
     }
