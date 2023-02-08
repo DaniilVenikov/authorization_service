@@ -21,6 +21,11 @@ public class Person {
 
     public Person() {}
 
+    public Person(String user, String password) {
+        this.user = user;
+        this.password = password;
+    }
+
     public Person(String user, String password, List<Authorities> privileges) {
         this.user = user;
         this.password = password;
