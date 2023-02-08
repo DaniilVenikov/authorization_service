@@ -1,11 +1,13 @@
 package com.example.authorization_service.model;
 
+import com.example.authorization_service.repository.Authorities;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
 import java.util.Objects;
 
-public class User {
+public class Person {
 
     @NotBlank
     @Size(min=2, max=50)
@@ -15,11 +17,14 @@ public class User {
     @Size(min = 3, max = 50)
     private String password;
 
-    public User() {}
+    private List<Authorities> privileges;
 
-    public User(String name, String password) {
-        this.user = name;
+    public Person() {}
+
+    public Person(String user, String password, List<Authorities> privileges) {
+        this.user = user;
         this.password = password;
+        this.privileges = privileges;
     }
 
     @Override
@@ -43,11 +48,19 @@ public class User {
         this.password = password;
     }
 
+    public List<Authorities> getPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(List<Authorities> privileges) {
+        this.privileges = privileges;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        Person user = (Person) o;
         return Objects.equals(this.user, user.user) && Objects.equals(password, user.password);
     }
 

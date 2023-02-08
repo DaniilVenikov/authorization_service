@@ -1,24 +1,32 @@
 package com.example.authorization_service.repository;
 
+import com.example.authorization_service.model.Person;
+
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UserRepository {
-    private final ConcurrentHashMap<String, String> repository = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Person> repository = new ConcurrentHashMap<>();
 
     {
-        repository.put("daniil", "123");
-        repository.put("alex", "861");
-        repository.put("bob", "321");
+        repository.put("daniil", new Person("daniil", "123", List.of(Authorities.WRITE, Authorities.READ, Authorities.DELETE)));
+        repository.put("alex", new Person("alex", "861", List.of(Authorities.WRITE, Authorities.READ)));
+        repository.put("bob", new Person("bob", "321", List.of(Authorities.READ)));
+
     }
     public List<Authorities> getUserAuthorities(String user, String password) {
-        String check = repository.get(user);
-        if(check != null && check.equals(password)){
-            return List.of(Authorities.WRITE, Authorities.READ, Authorities.DELETE);
+        if(isPerson(user)){
+            Person temp = repository.get(user);
+            if(temp.getPassword().equals(password)){
+                return temp.getPrivileges();
+            }
         }
         return List.of();
     }
-    public void addNewUser(String user, String password){
-        repository.put(user, password);
+
+    private boolean isPerson(String user){
+        return repository.values()
+                .stream()
+                .anyMatch((person -> person.getUser().equals(user)));
     }
 }

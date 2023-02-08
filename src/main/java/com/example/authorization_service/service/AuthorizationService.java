@@ -3,7 +3,7 @@ package com.example.authorization_service.service;
 
 import com.example.authorization_service.exception.InvalidCredentials;
 import com.example.authorization_service.exception.UnauthorizedUser;
-import com.example.authorization_service.model.User;
+import com.example.authorization_service.model.Person;
 import com.example.authorization_service.repository.Authorities;
 import com.example.authorization_service.repository.UserRepository;
 
@@ -15,7 +15,7 @@ public class AuthorizationService {
     public AuthorizationService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-    public List<Authorities> getAuthorities(User user) {
+    public List<Authorities> getAuthorities(Person user) {
         String userName = user.getUser();
         String password = user.getPassword();
         if (isEmpty(userName) || isEmpty(password)) {
@@ -28,10 +28,6 @@ public class AuthorizationService {
         return userAuthorities;
     }
 
-    public void registration(User user){
-        userRepository.addNewUser(user.getUser(), user.getPassword());
-        System.out.println("User added");
-    }
 
     private boolean isEmpty(String str) {
         return str == null || str.isEmpty();

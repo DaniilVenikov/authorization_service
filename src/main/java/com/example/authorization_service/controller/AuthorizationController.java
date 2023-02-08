@@ -1,6 +1,6 @@
 package com.example.authorization_service.controller;
 
-import com.example.authorization_service.model.User;
+import com.example.authorization_service.model.Person;
 import com.example.authorization_service.repository.Authorities;
 import com.example.authorization_service.service.AuthorizationService;
 import jakarta.validation.Valid;
@@ -18,12 +18,7 @@ public class AuthorizationController {
         this.service = service;
     }
     @GetMapping("/authorize")
-    public List<Authorities> getAuthorities(@Validated User user) {
+    public List<Authorities> getAuthorities(@Validated Person user) {
         return service.getAuthorities(user);
-    }
-
-    @GetMapping("/registration")
-    public void registration(@Valid User user){
-        service.registration(user);
     }
 }
