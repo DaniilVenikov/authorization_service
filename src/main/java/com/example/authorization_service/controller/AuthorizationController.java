@@ -1,7 +1,9 @@
 package com.example.authorization_service.controller;
 
+
 import com.example.authorization_service.config.UserValidated;
 import com.example.authorization_service.model.Person;
+
 import com.example.authorization_service.repository.Authorities;
 import com.example.authorization_service.service.AuthorizationService;
 import jakarta.validation.Valid;

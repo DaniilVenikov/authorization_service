@@ -4,6 +4,7 @@ import com.example.authorization_service.repository.Authorities;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+
 import java.util.List;
 import java.util.Objects;
 
@@ -31,6 +32,7 @@ public class Person {
         this.password = password;
         this.privileges = privileges;
     }
+
 
     @Override
     public int hashCode() {
