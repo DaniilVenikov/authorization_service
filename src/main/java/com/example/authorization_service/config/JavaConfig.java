@@ -1,6 +1,5 @@
 package com.example.authorization_service.config;
 
-import com.example.authorization_service.controller.AuthorizationController;
 import com.example.authorization_service.repository.UserRepository;
 import com.example.authorization_service.service.AuthorizationService;
 import org.springframework.context.annotation.Bean;

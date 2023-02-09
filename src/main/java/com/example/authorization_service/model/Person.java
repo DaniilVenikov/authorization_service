@@ -1,23 +1,42 @@
 package com.example.authorization_service.model;
 
 import com.example.authorization_service.repository.Authorities;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 
 import java.util.List;
 import java.util.Objects;
 
 public class Person {
 
+    @NotBlank
+    @Size(min=2, max=50)
     private String user;
+
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String password;
+
     private List<Authorities> privileges;
 
-    public Person() {
+    public Person() {}
+
+    public Person(String user, String password) {
+        this.user = user;
+        this.password = password;
     }
 
     public Person(String user, String password, List<Authorities> privileges) {
         this.user = user;
         this.password = password;
         this.privileges = privileges;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user, password);
     }
 
     public String getUser() {
@@ -48,12 +67,15 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(user, person.user) && Objects.equals(password, person.password);
+        Person user = (Person) o;
+        return Objects.equals(this.user, user.user) && Objects.equals(password, user.password);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(user, password);
+    public String toString() {
+        return "User{" +
+                "name='" + user + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
