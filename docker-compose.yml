@@ -2,8 +2,6 @@ version: '3'
 
 services:
   app:
-    build:
-      #TODO запустить dockerfile, слздать image, потом доделать docker-compose
+    build: ./
     ports:
       - '8080:8080'
-
